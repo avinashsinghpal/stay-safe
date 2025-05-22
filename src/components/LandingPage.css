@@ -1,0 +1,72 @@
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.landing-container {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.overlay {
+  text-align: center;
+  color: #fff;
+  padding: 2rem;
+}
+
+.welcome-line {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.animated-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  background: linear-gradient(270deg, #ff0080, #7928ca, #00bcd4);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+  margin-bottom: 2rem;
+  margin-top: 0.2rem;
+}
+.button-group {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.login-button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background-color: #6a4cff;
+  color: #fff;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-button:hover {
+  background-color: #4b35b0;
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
+}
