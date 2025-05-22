@@ -6,11 +6,11 @@ function LandingPage() {
   const navigate = useNavigate();
 
   const handleUserLogin = () => {
-    navigate('/user');
+    navigate('/login-user');
   };
 
   const handleReceiverLogin = () => {
-    navigate('/receiver');
+    navigate('/login-receiver');
   };
 
   return (
