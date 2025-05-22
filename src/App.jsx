@@ -1,8 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LandingPage from './components/LandingPage';
-import UserPage from './pages/UserPage';
-import ReceiverPage from './pages/ReceiverPage';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./components/LandingPage";
+import UserPage from "./pages/UserPage";
+import ReceiverPage from "./pages/ReceiverPage";
 
 function App() {
   return (
@@ -17,4 +17,3 @@ function App() {
 }
 
 export default App;
-

@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 function ReceiverPage() {
   return (
-    <div>
-      <h2>Receiver Page</h2>
-      {/* Future content for complaint management */}
+    <div style={{ padding: "2rem" }}>
+      <h2>Receiver Dashboard</h2>
+      <p>Feature implementation coming soon...</p>
     </div>
   );
 }
