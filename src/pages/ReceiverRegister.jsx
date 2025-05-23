@@ -1,18 +1,25 @@
 import React from "react";
 import "../styles/AuthPage.css";
+import { useNavigate } from "react-router-dom";
 
 function ReceiverRegister() {
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); 
+    navigate("/login-receiver"); 
+  };
   return (
     <div className="auth-page">
       <div className="auth-box">
       <h2>Receiver Registration</h2>
-      <form style={styles.form}>
+      <form style={styles.form} onSubmit={handleSubmit}>
         <input type="text" placeholder="ID Number" required style={styles.input} />
         <input type="text" placeholder="Organization Name" required style={styles.input} />
         <input type="email" placeholder="Email" required style={styles.input} />
         <input type="tel" placeholder="Phone Number" required style={styles.input} />
         <input type="password" placeholder="Password" required style={styles.input} />
-        <button type="submit" style={styles.button}>Register</button>
+        <button type="submit" className="button">Register</button>
       </form>
     </div>
     </div>

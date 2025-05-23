@@ -10,7 +10,7 @@ function UserLogin() {
       <form style={styles.form}>
         <input type="email" placeholder="Email" required style={styles.input} />
         <input type="password" placeholder="Password" required style={styles.input} />
-        <button type="submit" style={styles.button}>Login</button>
+        <button type="submit" className="button">Login</button>
       </form>
       <p>Not registered? <Link to="/register-user">Register</Link></p>
     </div>
