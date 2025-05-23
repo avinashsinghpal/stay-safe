@@ -1,11 +1,11 @@
 .auth-page {
   
-  width: 100vh;
+  width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom, #141e30, #243b55); /* similar gradient to landing */
+  background: linear-gradient(to bottom, #141e30, #243b55);
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

@@ -19,7 +19,7 @@ function UserLogin() {
 }
 
 const styles = {
-  container: { padding: '2rem', maxWidth: '400px', margin: 'auto' },
+  container: { padding: '2rem', maxWidth: '100vh', margin: 'auto' },
   form: { display: 'flex', flexDirection: 'column', gap: '1rem' },
   input: { padding: '0.8rem' },
   button: { padding: '0.8rem', background: '#6a4cff', color: '#fff', border: 'none', borderRadius: '5px' }
