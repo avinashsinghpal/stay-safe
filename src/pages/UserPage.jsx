@@ -3,6 +3,7 @@ import "../styles/UserPage.css";
 
 function UserPage() {
   const [image, setImage] = useState(null);
+  const [imageFile, setImageFile] = useState(null); // <-- Add this line
   const [location, setLocation] = useState(null);
   const [description, setDescription] = useState("");
 
@@ -25,64 +26,85 @@ function UserPage() {
     const file = e.target.files[0];
     if (file) {
       setImage(URL.createObjectURL(file));
+      setImageFile(file); // <-- Store the file for upload
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Complaint Submitted:", {
-      image,
-      location,
-      description,
-    });
-    alert("Complaint submitted!");
+    const formData = new FormData();
+    formData.append("description", description);
+    formData.append("lat", location?.lat);
+    formData.append("lon", location?.lon);
+    if (imageFile) formData.append("image", imageFile); // <-- Use imageFile
+
+    try {
+      const response = await fetch("http://localhost:5000/api/complaints", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        alert("Complaint submitted!");
+        setDescription("");
+        setImage(null);
+        setImageFile(null); // <-- Reset imageFile
+      } else {
+        alert("Submission failed");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error submitting complaint.");
+    }
   };
 
   return (
-
     <div className="userpage">
-    <div className = "userbox">
-      <h2>Submit a Complaint</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Upload Image or Use Camera:</label><br />
-          <input
-            type="file"
-            accept="image/*"
-            capture="environment"
-            onChange={handleImageChange}
-          />
-        </div>
-        {image && (
-          <div style={{ marginTop: "1rem" }}>
-            <img src={image} alt="Preview" width="200" />
+      <div className="userbox">
+        <h2>Submit a Complaint</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Upload Image or Use Camera:</label>
+            <br />
+            <input
+              type="file"
+              accept="image/*"
+              capture="environment"
+              onChange={handleImageChange}
+            />
           </div>
-        )}
-        <div className ="file" style={{ marginTop: "1rem" }}>
-          <label>Description:</label><br />
-          <textarea
-            rows="4"
-            cols="50"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </div>
-        <div style={{ marginTop: "1rem" }}>
-          <label>Location:</label><br />
-          {location ? (
-            <p>
-              Latitude: {location.lat}, Longitude: {location.lon}
-            </p>
-          ) : (
-            <p>Fetching location...</p>
+          {image && (
+            <div style={{ marginTop: "1rem" }}>
+              <img src={image} alt="Preview" width="200" />
+            </div>
           )}
-        </div>
-        <button type="submit" style={{ marginTop: "1rem" }}>
-          Submit Complaint
-        </button>
-      </form>
-    </div>
+          <div className="file" style={{ marginTop: "1rem" }}>
+            <label>Description:</label>
+            <br />
+            <textarea
+              rows="4"
+              cols="50"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+          </div>
+          <div style={{ marginTop: "1rem" }}>
+            <label>Location:</label>
+            <br />
+            {location ? (
+              <p>
+                Latitude: {location.lat}, Longitude: {location.lon}
+              </p>
+            ) : (
+              <p>Fetching location...</p>
+            )}
+          </div>
+          <button type="submit" style={{ marginTop: "1rem" }}>
+            Submit Complaint
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
