@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Municipality Dashboard</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2 class="logo">GrievEase</h2>
+      <nav>
+        <a href="#" class="nav-link active">Dashboard</a>
+        <a href="#" class="nav-link">Complaints</a>
+        <a href="#" class="nav-link">Reports</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header>
+        <h1>Municipality Dashboard</h1>
+        <button class="logout-btn">Logout</button>
+      </header>
+
+      <section class="status-cards">
+        <div class="card">
+          <h2>2</h2>
+          <p>New Grievances</p>
+        </div>
+        <div class="card">
+          <h2>2</h2>
+          <p>In Progress</p>
+        </div>
+        <div class="card">
+          <h2>1</h2>
+          <p>Resolved</p>
+        </div>
+      </section>
+
+      <section class="table-section">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Description</th>
+              <th>Location</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="complaint-table-body">
+            <!-- JS injects rows here -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
