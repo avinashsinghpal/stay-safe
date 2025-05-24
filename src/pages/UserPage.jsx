@@ -3,18 +3,19 @@ import "../styles/UserPage.css";
 
 function UserPage() {
   const [image, setImage] = useState(null);
-  const [imageFile, setImageFile] = useState(null); // <-- Add this line
+  const [imageFile, setImageFile] = useState(null);
   const [location, setLocation] = useState(null);
   const [description, setDescription] = useState("");
+  const [address, setAddress] = useState(""); // <-- New: address state
 
-  // Get location
+  // Get location and fetch address
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        setLocation({
-          lat: position.coords.latitude,
-          lon: position.coords.longitude,
-        });
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        setLocation({ lat, lon });
+        fetchAddressFromCoordinates(lat, lon); // <-- Fetch address when location is set
       },
       (error) => {
         console.error("Error fetching location:", error);
@@ -22,11 +23,31 @@ function UserPage() {
     );
   }, []);
 
+  // Fetch address using Mappls API
+  const fetchAddressFromCoordinates = async (lat, lon) => {
+    try {
+      const apiKey = "1f321d8ff932492475b480c02fa9ffea"; // Replace with your actual API key
+      const response = await fetch(
+        `https://apis.mappls.com/advancedmaps/v1/${apiKey}/rev_geocode?lat=${lat}&lng=${lon}`
+      );
+      const data = await response.json();
+      const result = data.results?.[0]?.formatted_address;
+      if (result) {
+        setAddress(result);
+      } else {
+        setAddress("Address not found.");
+      }
+    } catch (error) {
+      console.error("Error fetching address:", error);
+      setAddress("Error fetching address.");
+    }
+  };
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setImage(URL.createObjectURL(file));
-      setImageFile(file); // <-- Store the file for upload
+      setImageFile(file);
     }
   };
 
@@ -36,10 +57,10 @@ function UserPage() {
     formData.append("description", description);
     formData.append("lat", location?.lat);
     formData.append("lon", location?.lon);
-    if (imageFile) formData.append("image", imageFile); // <-- Use imageFile
+    if (imageFile) formData.append("image", imageFile);
 
     try {
-      const response = await fetch("http://localhost:5000/api/complaints", {
+      const response = await fetch("http://localhost:5200/api/complaints", {
         method: "POST",
         body: formData,
       });
@@ -48,7 +69,7 @@ function UserPage() {
         alert("Complaint submitted!");
         setDescription("");
         setImage(null);
-        setImageFile(null); // <-- Reset imageFile
+        setImageFile(null);
       } else {
         alert("Submission failed");
       }
@@ -93,9 +114,16 @@ function UserPage() {
             <label>Location:</label>
             <br />
             {location ? (
-              <p>
-                Latitude: {location.lat}, Longitude: {location.lon}
-              </p>
+              <>
+                <p>
+                  Latitude: {location.lat}, Longitude: {location.lon}
+                </p>
+                {address && (
+                  <p>
+                    <strong>Address:</strong> {address}
+                  </p>
+                )}
+              </>
             ) : (
               <p>Fetching location...</p>
             )}

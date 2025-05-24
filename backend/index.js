@@ -9,5 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static("uploads"));
 app.use("/api/complaints", complaintRoutes);
 
-const PORT = 5000;
+const PORT = 5200;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+console.log("This line runs after listen");

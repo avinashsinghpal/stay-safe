@@ -19,6 +19,7 @@ function App() {
         <Route path="/register-user" element={<UserRegister />} />
         <Route path="/login-receiver" element={<ReceiverLogin />} />
         <Route path="/register-receiver" element={<ReceiverRegister />} />
+        
       </Routes>
     </Router>
   );
