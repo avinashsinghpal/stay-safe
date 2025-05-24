@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../styles/UserPage.css";
 
 function UserPage() {
   const [image, setImage] = useState(null);
@@ -38,7 +39,9 @@ function UserPage() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
+
+    <div className="userpage">
+    <div className = "userbox">
       <h2>Submit a Complaint</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -55,7 +58,7 @@ function UserPage() {
             <img src={image} alt="Preview" width="200" />
           </div>
         )}
-        <div style={{ marginTop: "1rem" }}>
+        <div className ="file" style={{ marginTop: "1rem" }}>
           <label>Description:</label><br />
           <textarea
             rows="4"
@@ -79,6 +82,7 @@ function UserPage() {
           Submit Complaint
         </button>
       </form>
+    </div>
     </div>
   );
 }
