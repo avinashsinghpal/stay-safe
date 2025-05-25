@@ -1,35 +1,34 @@
-import React from "react";
-import "../styles/ReceiverPage.css"; 
+import React, { useEffect, useState } from "react";
+import "../styles/ReceiverPage.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 const ReceiverPage = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const [complaints, setComplaints] = useState([]);
+
+  useEffect(() => {
+    const fetchComplaints = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/receiver/complaints");
+        // Optional: simulate a status field (since not in DB)
+        const dataWithStatus = res.data.map((item, index) => ({
+          ...item,
+          status: ["New", "In Progress", "Resolved"][index % 3], // simulate status
+          location: `${item.latitude}, ${item.longitude}` // show location
+        }));
+        setComplaints(dataWithStatus);
+      } catch (err) {
+        console.error("Error fetching complaints:", err);
+      }
+    };
+
+    fetchComplaints();
+  }, []);
 
   const handleLogout = () => {
-    navigate("/"); 
+    navigate("/");
   };
-  const complaints = [
-    {
-      id: "GR-54321",
-      description: "Large pothole on Main Street",
-      location: "Main & 5th Ave",
-      date: "2025-05-20",
-      status: "New",
-    },
-    {
-      id: "GR-54322",
-      description: "Streetlight not working",
-      location: "Oak & Pine",
-      date: "2025-05-19",
-      status: "In Progress",
-    },
-    {
-      id: "GR-54319",
-      description: "Garbage not collected",
-      location: "Maple Drive",
-      date: "2025-05-18",
-      status: "Resolved",
-    },
-  ];
 
   const getStatusClass = (status) => {
     switch (status) {
@@ -43,6 +42,9 @@ const ReceiverPage = () => {
         return "status";
     }
   };
+
+  const countStatus = (status) =>
+    complaints.filter((c) => c.status === status).length;
 
   return (
     <div className="receiver-container">
@@ -65,15 +67,15 @@ const ReceiverPage = () => {
 
         <div className="stats-cards">
           <div className="card">
-            <h3>2</h3>
+            <h3>{countStatus("New")}</h3>
             <p>New Grievances</p>
           </div>
           <div className="card">
-            <h3>2</h3>
+            <h3>{countStatus("In Progress")}</h3>
             <p>In Progress</p>
           </div>
           <div className="card">
-            <h3>1</h3>
+            <h3>{countStatus("Resolved")}</h3>
             <p>Resolved</p>
           </div>
         </div>
@@ -95,7 +97,7 @@ const ReceiverPage = () => {
                 <td>{complaint.id}</td>
                 <td>{complaint.description}</td>
                 <td>{complaint.location}</td>
-                <td>{complaint.date}</td>
+                <td>{new Date(complaint.created_at).toLocaleDateString()}</td>
                 <td>
                   <span className={getStatusClass(complaint.status)}>
                     {complaint.status}
