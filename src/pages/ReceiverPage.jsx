@@ -11,7 +11,6 @@ const ReceiverPage = () => {
     const fetchComplaints = async () => {
       try {
         const res = await axios.get("http://localhost:5000/api/receiver/complaints");
-        // Optional: simulate a status field (since not in DB)
         const dataWithStatus = res.data.map((item, index) => ({
           ...item,
           status: ["New", "In Progress", "Resolved"][index % 3], // simulate status

@@ -17,7 +17,7 @@ body {
   flex-direction: column;
 }
 
-/* Prevent horizontal scroll */
+
 body, .landing-container {
   overflow-x: hidden;
 }
@@ -25,8 +25,8 @@ body, .landing-container {
 .overlay {
   max-width: 900px;
   width: 100%;
-  padding-top: 90px; /* Add padding to avoid header overlap */
-  padding-bottom: 80px; /* Optional: Add bottom padding to avoid footer overlap */
+  padding-top: 90px; 
+  padding-bottom: 80px; 
 }
 
 .welcome-line {
@@ -44,7 +44,7 @@ body, .landing-container {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradientShift 4s ease infinite; /* Animation */
+  animation: gradientShift 4s ease infinite; 
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
@@ -89,7 +89,7 @@ body, .landing-container {
   background-color: #5f66a1;
 }
 
-/* Header styles */
+
 .landing-header {
   width: 100%;
   background: #2d66f0;
@@ -114,8 +114,8 @@ body, .landing-container {
   font-size: 1.7rem;
   font-weight: bold;
   letter-spacing: 1px;
-  min-width: 0;            /* Prevent overflow */
-  word-break: break-word;  /* Break long words if needed */
+  min-width: 0;            
+  word-break: break-word;  
 }
 
 .header-nav {
@@ -156,7 +156,7 @@ body, .landing-container {
   }
 }
 
-/* Footer styles */
+
 .landing-footer {
   width: 100%;
   background: #f5f5f5;
@@ -187,7 +187,7 @@ body, .landing-container {
   text-decoration: underline;
 }
 
-/* Optional: Add bottom padding to overlay to avoid footer overlap */
+
 .overlay {
   padding-bottom: 80px;
 }

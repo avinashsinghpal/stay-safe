@@ -69,7 +69,7 @@ function LandingPage() {
             &copy; {new Date().getFullYear()} GrievEase. All rights reserved.
           </div>
           <div>
-            <a href="https://github.com/your-repo" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://github.com/avinashsinghpal/stay-safe.git" target="_blank" rel="noopener noreferrer">GitHub</a>
             {" | "}
             <a href="#privacy">Privacy Policy</a>
           </div>

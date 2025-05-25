@@ -3,7 +3,7 @@ import "../styles/UserPage.css";
 
 function UserPage() {
   const [image, setImage] = useState(null);
-  const [imageFile, setImageFile] = useState(null); // <-- Add this line
+  const [imageFile, setImageFile] = useState(null); 
   const [location, setLocation] = useState(null);
   const [description, setDescription] = useState("");
 
@@ -26,7 +26,7 @@ function UserPage() {
     const file = e.target.files[0];
     if (file) {
       setImage(URL.createObjectURL(file));
-      setImageFile(file); // <-- Store the file for upload
+      setImageFile(file); 
     }
   };
 
@@ -36,7 +36,7 @@ function UserPage() {
     formData.append("description", description);
     formData.append("lat", location?.lat);
     formData.append("lon", location?.lon);
-    if (imageFile) formData.append("image", imageFile); // <-- Use imageFile
+    if (imageFile) formData.append("image", imageFile); 
 
     try {
       const response = await fetch("http://localhost:5000/api/complaints", {
