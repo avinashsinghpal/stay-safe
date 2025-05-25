@@ -1,0 +1,131 @@
+.receiver-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #f5f5f5;
+  padding: 2rem 1rem;
+  color: #2d66f0;
+}   
+
+.logo {
+  color: #2d66f0;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 1rem 0;
+  cursor: pointer;
+  font-weight: 500;
+  color: black;
+  transition: color 0.3s;
+}
+
+.dashboard {
+  flex-grow: 1;
+  padding: 2rem;
+  background-color: #fbfbfb;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(20, 19, 19);
+}
+
+.logout-btn {
+  padding: 0.5rem 1rem;
+  background-color: #9e4343;
+  border: none;
+  cursor: pointer;
+}
+
+.stats-cards {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.card {
+  background: white;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  text-align: center;
+  color: rgb(22, 133, 224);
+}
+
+.complaints-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgb(238, 227, 227);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.complaints-table th,
+.complaints-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ada2a2;
+  color: rgb(20, 19, 19);
+  font:  1rem Arial, sans-serif;
+}
+
+.status {
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: rgb(80, 67, 67);
+  font-weight: bold;
+}
+
+.status.new {
+  background-color: #a3c1ff;
+}
+
+.status.progress {
+  background-color: #ffe58a;
+  color: #7a6200;
+}
+
+.status.resolved {
+  background-color: #b2f2bb;
+  color: #237804;
+}
+
+.view-btn,
+.resolve-btn,
+.reopen-btn {
+  margin-right: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.view-btn {
+  background-color: #924141;
+}
+
+.resolve-btn {
+  background-color: #64b864;
+}
+
+.reopen-btn {
+  background-color: #d4cbcb;
+}
