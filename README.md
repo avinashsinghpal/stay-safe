@@ -21,49 +21,13 @@ It features:
 | Node.js + Express  | Backend API                    |
 | PostgreSQL         | Relational database            |
 | Vercel             | Frontend Hosting               |
-| Render/Fly.io/etc. | Backend Hosting (recommended)  |
+| Railway            | Backend Hosting                |
 | Multer             | Image Upload Handling          |
 | Geolocation API    | Captures Lat/Lng automatically |
 
 ---
 
-## 📁 Project Structure
 
-```
-stay-safe/
-├── client/             # React frontend
-│   ├── src/
-│   │   ├── pages/
-│   │   │   ├── ReceiverPage.jsx
-│   │   │   ├── UserPage.jsx
-│   │   ├── App.jsx
-│   │   └── index.js
-├── server/             # Express backend
-│   ├── routes/
-│   │   ├── auth.js
-│   │   └── complaints.js
-│   ├── db.js           # PostgreSQL connection
-│   └── index.js        # Server entry point
-└── README.md
-```
-
----
-
-## 🧭 Architecture Diagram
-
-To render this Mermaid chart on GitHub, install [Mermaid plugin](https://marketplace.visualstudio.com/items?itemName=vstirbu.vscode-mermaid-preview) or view using GitHub’s Markdown viewer.
-
-```mermaid
-graph TD
-    A[User (Frontend)] -->|Registers / Logs in| B[Node.js/Express Backend]
-    A -->|Uploads Complaint + Image + Location| B
-    B -->|Stores Data| C[(PostgreSQL DB)]
-    B -->|Stores Image Path| C
-    D[Receiver (Frontend)] -->|Fetches Complaints| B
-    B -->|Sends Complaint Data| D
-```
-
----
 
 ## 🔁 Application Flow
 
@@ -146,7 +110,6 @@ CREATE TABLE complaints (
 ### 💻 Frontend Setup (React)
 
 ```bash
-cd client
 npm install
 npm start
 ```
@@ -159,13 +122,13 @@ Make sure `axios` requests point to `http://localhost:5000` or your deployed bac
 
 ### Vercel (Frontend)
 
-* Connect `client/` folder to GitHub
-* Set base directory: `client`
+* Connect folder to GitHub
+
 * Deploy
 
-### Render (Backend)
+### Railway (Backend)
 
-* Push `server/` to GitHub
+* Push `backend/` to GitHub
 * Create new Web Service on Render
 * Set environment variables:
 
@@ -199,9 +162,11 @@ Make sure `axios` requests point to `http://localhost:5000` or your deployed bac
 
 **Avinash Singh Pal**
 GitHub: [@avinashsinghpal](https://github.com/avinashsinghpal)
-
+**Abhay Kumar**
+GitHub: [@sweatypenguin624](https://github.com/sweatypenguin624)
+**Namandeep Singh Virdi**
+GitHub: [@Naman9245](https://github.com/Naman9245)
 ---
-
 ## 📄 License
 
 MIT License. Free for public use and contributions.
