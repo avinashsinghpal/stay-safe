@@ -39,7 +39,7 @@ function UserPage() {
     if (imageFile) formData.append("image", imageFile); 
 
     try {
-      const response = await fetch("http://backend-deploy-production-d08a.up.railway.app:5000/api/complaints", {
+      const response = await fetch("https://backend-deploy-production-d08a.up.railway.app:5000/api/complaints", {
         method: "POST",
         body: formData,
       });

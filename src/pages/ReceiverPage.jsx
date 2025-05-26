@@ -10,7 +10,7 @@ const ReceiverPage = () => {
   useEffect(() => {
     const fetchComplaints = async () => {
       try {
-        const res = await axios.get("http://backend-deploy-production-d08a.up.railway.app:5000/api/complaints");
+        const res = await axios.get("https://backend-deploy-production-d08a.up.railway.app:5000/api/complaints");
         const dataWithStatus = res.data.map((item, index) => ({
           ...item,
           status: ["New", "In Progress", "Resolved"][index % 3], // simulate status
