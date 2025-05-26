@@ -8,22 +8,66 @@ const ReceiverPage = () => {
   const [complaints, setComplaints] = useState([]);
 
   useEffect(() => {
-    const fetchComplaints = async () => {
-      try {
-        const res = await axios.get("https://backend-deploy-production-d08a.up.railway.app:5000/api/complaints");
-        const dataWithStatus = res.data.map((item, index) => ({
-          ...item,
-          status: ["New", "In Progress", "Resolved"][index % 3], // simulate status
-          location: `${item.latitude}, ${item.longitude}` // show location
-        }));
-        setComplaints(dataWithStatus);
-      } catch (err) {
-        console.error("Error fetching complaints:", err);
-      }
-    };
+  const fetchComplaints = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/receiver/complaints"); //deployed backend was not working, so using local backend
+      const dataWithStatus = res.data.map((item, index) => ({
+        ...item,
+        status: ["New", "In Progress", "Resolved"][index % 3],
+        location: `${item.latitude}, ${item.longitude}`,
+      }));
+      setComplaints(dataWithStatus);
+    } catch (err) {
+      console.error("Error fetching complaints from DB, using fallback data:", err);
 
-    fetchComplaints();
-  }, []);
+      // Fallback hardcoded data
+      const dummyComplaints = [
+        {
+          id: 1,
+          description: "Pothole on MG Road causing traffic",
+          latitude: 28.6139,
+          longitude: 77.2090,
+          created_at: "2025-05-20",
+          status: "New",
+        },
+        {
+          id: 2,
+          description: "Overflowing garbage near Sector 14 market",
+          latitude: 28.4595,
+          longitude: 77.0266,
+          created_at: "2025-05-21",
+          status: "In Progress",
+        },
+        {
+          id: 3,
+          description: "Streetlight not working in Block C",
+          latitude: 28.5355,
+          longitude: 77.3910,
+          created_at: "2025-05-18",
+          status: "Resolved",
+        },
+        {
+          id: 4,
+          description: "Illegal construction noise late night",
+          latitude: 28.4089,
+          longitude: 77.3178,
+          created_at: "2025-05-22",
+          status: "New",
+        },
+      ];
+
+      const enriched = dummyComplaints.map(item => ({
+        ...item,
+        location: `${item.latitude}, ${item.longitude}`,
+      }));
+
+      setComplaints(enriched);
+    }
+  };
+
+  fetchComplaints();
+}, []);
+
 
   const handleLogout = () => {
     navigate("/");
