@@ -39,7 +39,7 @@ function UserPage() {
     if (imageFile) formData.append("image", imageFile); 
 
     try {
-      const response = await fetch("http://localhost:5000/api/complaints", {
+      const response = await fetch("http://backend-deploy-production-d08a.up.railway.app:5000/api/complaints", {
         method: "POST",
         body: formData,
       });
@@ -51,6 +51,7 @@ function UserPage() {
         setImageFile(null); // <-- Reset imageFile
       } else {
         alert("Submission failed");
+        console.error("Error submitting complaint:", response.statusText);
       }
     } catch (err) {
       console.error(err);
